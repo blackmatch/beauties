@@ -33,7 +33,7 @@ class GirlModal extends React.Component {
 
   async getUserDetail() {
     if (this.uId) {
-      const data = await request(`api/user/${this.uId}`);
+      const data = await request(`/api/user/${this.uId}`);
       console.log(data);
       if (data.data.error !== undefined) {
         this.setState({ ...this.state, loading: false, errorOccurred: true });
