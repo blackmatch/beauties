@@ -1,5 +1,5 @@
-const version = '2017060301';
-const cdn = 'http://oqyv3hzi3.bkt.clouddn.com';
+const version = '2017060302';
+const cdn = 'https://oqyv3hzi3.bkt.clouddn.com';
 const setting = {
   "entry": "src/index.js",
   "env": {
