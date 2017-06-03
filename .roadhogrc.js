@@ -15,8 +15,8 @@ const setting = {
         "transform-runtime",
         ["import", { "libraryName": "antd", "style": "css" }]
       ],
-      "outputPath": `./dist/${version}`,
-      "publicPath": `${cdn}$/${version}/`,
+      // "outputPath": `./dist/${version}`,
+      // "publicPath": `${cdn}$/${version}/`,
     }
   },
 };

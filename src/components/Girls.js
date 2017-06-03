@@ -105,8 +105,6 @@ function Girls({ dispatch, girls, loading, total, page, tab: tabName }) {
     );
   }
 
-  console.log('========== page');
-  console.log(page);
   return (
     <div className={styles.normal}>
       <div>
