@@ -1,5 +1,6 @@
-const version = '2017060303';
+const version = '2017060501';
 const cdn = 'https://oqyv3hzi3.bkt.clouddn.com';
+
 const setting = {
   "entry": "src/index.js",
   "env": {
@@ -15,8 +16,8 @@ const setting = {
         "transform-runtime",
         ["import", { "libraryName": "antd", "style": "css" }]
       ],
-      // "outputPath": `./dist/${version}`,
-      // "publicPath": `${cdn}$/${version}/`,
+      "outputPath": `./dist/${version}`,
+      "publicPath": `${cdn}$/${version}/`,
     }
   },
 };
