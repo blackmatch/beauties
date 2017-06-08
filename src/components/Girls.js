@@ -6,6 +6,7 @@ import {
   Spin,
 } from 'antd';
 import { connect } from 'dva';
+import { routerRedux } from 'dva/router';
 import styles from './Girls.css';
 import GirlModal from './GirlModal';
 import { PAGE_SIZE } from '../constants';
@@ -43,67 +44,53 @@ const menus = [
   },
 ];
 
-function Girls({ dispatch, girls, loading, total, page, tab: tabName }) {
+function Girls({ dispatch, girls, loading, total, page: current, tab: tabName }) {
+  /* 切换菜单 */
+  const onMenuSelect = (item) => {
+    dispatch(routerRedux.push({
+      pathname: '/',
+      query: {
+        tab: item.key,
+        page: 1,
+      },
+    }));
+  };
+
+  /* 切换页 */
+  function pageChangeHandler(p) {
+    dispatch(routerRedux.push({
+      pathname: '/',
+      query: {
+        tab: tabName,
+        page: p,
+      },
+    }));
+  }
+
+  /* 菜单元素 */
   const menuItems = menus.map(menu =>
     <MenuItem key={menu.key}>
       {menu.title}
     </MenuItem>,
   );
 
-  /* 切换菜单 */
-  const onMenuSelect = (item) => {
-    dispatch({
-      type: 'girls/fetch',
-      payload: { page: 1, tab: item.key },
-    });
-  };
-
-  /* 页 */
-  function pageChangeHandler(p) {
-    dispatch({
-      type: 'girls/fetch',
-      payload: { page: p, tab: tabName },
-    });
-  }
-
-  let shouldLoading;
-  if (tabName === undefined) {
-    shouldLoading = true;
-  } else {
-    shouldLoading = loading;
-  }
-
-  let girlCards;
-  if (girls !== undefined && girls.length > 0) {
-    girlCards = girls.map((girl, index) =>
-      <li key={`${index}`} style={{ display: 'inline-block' }}>
-        <Card className={styles.card} bodyStyle={{ padding: 0 }}>
-          <div style={{ height: 320 }}>
-            <GirlModal uId={girl.uId}>
-              <img className={styles.img} alt={girl.title} src={girl.imgUrl} />
-            </GirlModal>
-          </div>
-          <div style={{ height: 30 }}>
-            <p className={styles.title}>
-              {girl.title}
-            </p>
-          </div>
-        </Card>
-      </li>,
-    );
-  } else if (girls !== undefined
-    && girls.length === 0
-    && shouldLoading === false) {
-    girlCards = (
-      <li>
-        <div>
-          <p style={{ marginTop: 20, color: 'red', fontSize: 18 }}>
-            这一页真的什么都没有，要不换一页试试~~
+  /* 每一张图片的元素 */
+  const girlCards = girls.map((girl, index) =>
+    <li key={`${index}`} style={{ display: 'inline-block' }}>
+      <Card className={styles.card} bodyStyle={{ padding: 0 }}>
+        <div style={{ height: 320 }}>
+          <GirlModal uId={girl.uId}>
+            <img className={styles.img} alt={girl.title} src={girl.imgUrl} />
+          </GirlModal>
+        </div>
+        <div style={{ height: 30 }}>
+          <p className={styles.title}>
+            {girl.title}
           </p>
         </div>
-      </li>
-    );
-  }
+      </Card>
+    </li>,
+  );
 
   return (
     <div className={styles.normal}>
@@ -126,14 +113,14 @@ function Girls({ dispatch, girls, loading, total, page, tab: tabName }) {
       </div>
       <div>
         <Pagination
-          defaultCurrent={page}
+          current={current || 0}
           defaultPageSize={PAGE_SIZE}
           onChange={pageChangeHandler}
           className={styles.pagination}
           total={total}
         />
       </div>
-      <Spin className={styles.spin} size="large" spinning={shouldLoading} />
+      <Spin className={styles.spin} size="large" spinning={loading} />
     </div>
   );
 }

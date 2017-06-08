@@ -14,32 +14,40 @@ export default {
     },
   },
   effects: {
-    *fetch({ payload }, { call, put }) {
-      const data = yield call(girlsService.query, payload);
+    *fetch({ payload: { page, tab } }, { call, put }) {
+      const data = yield call(girlsService.query, { page, tab });
+      const girls = data.data;
+      const newGirls = [];
+      for (const girl of girls) {
+        girl.imgUrl = girl.imgUrl.replace('http', 'https');
+        newGirls.push(girl);
+      }
       yield put({
         type: 'save',
         payload: {
-          girls: data.data,
+          girls: newGirls,
           total: TOTAL_NUM,
-          page: payload.page,
-          tab: payload.tab,
+          page: page,
+          tab: tab,
         },
       });
     },
-    *reload(action, { put }) {
-      yield put({
-        type: 'fetch',
-        payload: action.payload,
-      });
-    },
+    // *reload(action, { put }) {
+    //   yield put({
+    //     type: 'fetch',
+    //     payload: action.payload,
+    //   });
+    // },
   },
   subscriptions: {
     setup({ dispatch, history }) {  // eslint-disable-line
-      return history.listen(({ pathname }) => {
+      return history.listen(({ pathname, query }) => {
         if (pathname === '/') {
+          const t = query.tab || 'all';
+          const p = query.page ? parseInt(query.page, 10) : 1;
           dispatch({
-            type: 'reload',
-            payload: { tab: 'all', page: 1 },
+            type: 'fetch',
+            payload: { tab: t, page: p },
           });
         }
       });
