@@ -103,9 +103,11 @@ class GirlModal extends React.Component {
             width={800}
             maskClosable={false}
           >
-            <ul>
-              {imgItems}
-            </ul>
+            <div className={styles.imgs}>
+              <ul>
+                {imgItems}
+              </ul>
+            </div>
             <Spin
               className={styles.spin}
               size="large"
