@@ -44,7 +44,13 @@ const menus = [
   },
 ];
 
-function Girls({ dispatch, girls, loading, total, page: current, tab: tabName }) {
+function Girls({
+  dispatch,
+  girls,
+  loading,
+  total,
+  page: current,
+  tab: tabName }) {
   /* 切换菜单 */
   const onMenuSelect = (item) => {
     dispatch(routerRedux.push({
@@ -105,6 +111,14 @@ function Girls({ dispatch, girls, loading, total, page: current, tab: tabName })
         >
           {menuItems}
         </Menu>
+      </div>
+      <div>
+        <h4 style={{ marginTop: 10, color: 'red' }}>
+          声明：该网站数据来源于互联网，仅供学习使用，不得用于商业用途，如有侵权，请
+          <a href="mailto:coder.blackmatch@gmail.com">
+            给我发邮件
+          </a>
+        </h4>
       </div>
       <div className={styles.content}>
         <ul>
