@@ -1,10 +1,24 @@
 import queryString from 'query-string';
 import request from '../utils/request';
 
+// 转换
+const transObj = {
+  daxiong: 'tit',
+  qiaotun: 'hip',
+  heisi: 'silk',
+  meitui: 'leg',
+  yanzhi: 'face',
+  dazahui: 'other',
+};
+
 export async function query(payload) {
   const params = {
     page: payload.page || 1,
   };
-  const tab = payload.tab || 'all';
-  return request(`/api/image/${tab}?${queryString.stringify(params)}`);
+
+  if (payload.tab) {
+    params.type = transObj[payload.tab];
+  }
+
+  return request(`/api/imgs?${queryString.stringify(params)}`);
 }

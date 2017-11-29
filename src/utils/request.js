@@ -1,6 +1,6 @@
 import fetch from 'dva/fetch';
 
-const baseUrl = 'https://blackmatch.top/dbmn';
+const baseUrl = 'https://blackmatch.cn';
 function parseJSON(response) {
   return response.json();
 }
