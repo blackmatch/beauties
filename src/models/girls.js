@@ -19,7 +19,7 @@ export default {
       const girls = data.data;
       const newGirls = [];
       for (const girl of girls) {
-        girl.imgUrl = girl.imgUrl.replace('http', 'https');
+        // girl.imgUrl = girl.imgUrl.replace('http', 'https');
         newGirls.push(girl);
       }
       yield put({

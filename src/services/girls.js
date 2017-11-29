@@ -20,5 +20,11 @@ export async function query(payload) {
     params.type = transObj[payload.tab];
   }
 
+  if (params.type) {
+    // ok
+  } else {
+    delete params.type;
+  }
+
   return request(`/api/imgs?${queryString.stringify(params)}`);
 }
