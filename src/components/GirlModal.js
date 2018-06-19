@@ -2,9 +2,9 @@ import React from 'react';
 import {
   Modal,
   Spin,
-  message,
+  // message,
 } from 'antd';
-import request from '../utils/request';
+// import request from '../utils/request';
 import styles from './GirlModal.css';
 
 class GirlModal extends React.Component {
