@@ -7,4 +7,5 @@
 .imgs {
   max-height: 650px;
   overflow-y: auto;
+  text-align: center;
 }

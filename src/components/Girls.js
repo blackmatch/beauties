@@ -85,7 +85,7 @@ function Girls({
     <li key={`${index}`} style={{ display: 'inline-block' }}>
       <Card className={styles.card} bodyStyle={{ padding: 0 }}>
         <div style={{ height: 320 }}>
-          <GirlModal uId={girl.uId}>
+          <GirlModal imgSrc={girl.imgUrl} title={girl.title}>
             <img className={styles.img} alt={girl.title} src={girl.imgUrl} />
           </GirlModal>
         </div>
