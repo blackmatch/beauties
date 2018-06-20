@@ -86,7 +86,9 @@ function Girls({
       <Card className={styles.card} bodyStyle={{ padding: 0 }}>
         <div style={{ height: 320 }}>
           <GirlModal imgSrc={girl.imgUrl} title={girl.title}>
-            <img className={styles.img} alt={girl.title} src={girl.imgUrl} />
+            <div>
+              <img className={styles.img} alt={girl.title} src={girl.imgUrl} />
+            </div>
           </GirlModal>
         </div>
         <div style={{ height: 30 }}>

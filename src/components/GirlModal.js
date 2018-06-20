@@ -38,34 +38,36 @@ class GirlModal extends React.Component {
     const { children, imgSrc, title } = this.props;
 
     return (
-      <span>
-        <span onClick={this.showHandler}>
-          {children}
-        </span>
+      <div>
         <span>
-          <Modal
-            title={title}
-            footer={null}
-            visible={this.state.visible}
-            onCancel={this.hideHandler}
-            width={800}
-            maskClosable={false}
-          >
-            <div className={styles.imgs}>
-              <img
-                style={{ maxWidth: '100%' }}
-                src={imgSrc}
-                alt={title}
+          <span onClick={this.showHandler}>
+            {children}
+          </span>
+          <span>
+            <Modal
+              title={title}
+              footer={null}
+              visible={this.state.visible}
+              onCancel={this.hideHandler}
+              width={800}
+              maskClosable={false}
+            >
+              <div className={styles.imgs}>
+                <img
+                  style={{ maxWidth: '100%' }}
+                  src={imgSrc}
+                  alt={title}
+                />
+              </div>
+              <Spin
+                className={styles.spin}
+                size="large"
+                spinning={this.state.loading}
               />
-            </div>
-            <Spin
-              className={styles.spin}
-              size="large"
-              spinning={this.state.loading}
-            />
-          </Modal>
+            </Modal>
+          </span>
         </span>
-      </span>
+      </div>
     );
   }
 }
