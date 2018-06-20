@@ -1,25 +1,22 @@
-// const version = '2017060501';
-// const cdn = 'https://oqyv3hzi3.bkt.clouddn.com';
-
-const setting = {
+{
   "entry": "src/index.js",
+  "hash": true,
+  "html": {
+    "template": "./src/index.ejs"
+  },
   "env": {
     "development": {
       "extraBabelPlugins": [
         "dva-hmr",
-        "transform-runtime",
+        "@babel/plugin-transform-runtime",
         ["import", { "libraryName": "antd", "style": "css" }]
       ]
     },
     "production": {
       "extraBabelPlugins": [
-        "transform-runtime",
+        "@babel/plugin-transform-runtime",
         ["import", { "libraryName": "antd", "style": "css" }]
-      ],
-      // "outputPath": `./dist/${version}`,
-      // "publicPath": `${cdn}$/${version}/`,
+      ]
     }
-  },
-};
-
-export default setting;
+  }
+}
